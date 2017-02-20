@@ -14,16 +14,8 @@ namespace WebApiDtoMapper.App_Start
         {
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers();
-            builder.RegisterType<Thing>().As<IThing>();
+            builder.RegisterType<Mapper>().As<IMapper>();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(builder.Build());
         }
-    }
-
-    public interface IThing
-    {
-    }
-
-    public interface Thing
-    {
     }
 }

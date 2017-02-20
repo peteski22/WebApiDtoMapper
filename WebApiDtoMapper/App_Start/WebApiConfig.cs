@@ -1,6 +1,7 @@
 ﻿namespace WebApiDtoMapper
 {
     using System.Web.Http;
+    using App_Start;
 
     public static class WebApiConfig
     {
@@ -16,6 +17,8 @@
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            ContainerConfig.RegisterContainer(config);
         }
     }
 }
