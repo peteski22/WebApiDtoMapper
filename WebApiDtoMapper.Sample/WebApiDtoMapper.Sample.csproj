@@ -120,7 +120,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApiDtoMapper.Sample\WebApiDtoMapper.csproj">
+    <ProjectReference Include="..\WebApiDtoMapper\WebApiDtoMapper.csproj">
       <Project>{037fc596-af6f-4013-8b04-d81c21ef17e4}</Project>
       <Name>WebApiDtoMapper</Name>
     </ProjectReference>
