@@ -9,16 +9,16 @@
     using WebApiDtoMapper.Models;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public class AutoMapAttribute : ActionFilterAttribute
+    public class MapResponseAttribute : ActionFilterAttribute
     {
         private readonly Type _destType;
 
-        static AutoMapAttribute()
+        static MapResponseAttribute()
         {
             Mapper.Initialize(x => x.CreateMap<Hello, HelloDto>());
         }
 
-        public AutoMapAttribute(Type destType)
+        public MapResponseAttribute(Type destType)
         {
             _destType = destType;
         }

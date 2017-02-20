@@ -108,7 +108,8 @@
     <Compile Include="Mapper.cs" />
     <Compile Include="Models\Hello.cs" />
     <Compile Include="Models\HelloDto.cs" />
-    <Compile Include="ParameterBinding\AutoMapFromBody.cs" />
+    <Compile Include="ParameterBinding\MapFromBodyAttribute.cs" />
+    <Compile Include="ParameterBinding\MapFromBodyParameterBinding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

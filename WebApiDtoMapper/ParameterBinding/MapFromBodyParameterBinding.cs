@@ -4,7 +4,6 @@
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Web.Http;
     using System.Web.Http.Controllers;
     using System.Web.Http.Metadata;
     using Newtonsoft.Json;
@@ -31,21 +30,6 @@
             var deserialized = actionContext.ActionDescriptor.Configuration.Formatters.JsonFormatter.CreateJsonSerializer().Deserialize(reader, _type);
             var mapper = (IMapper)actionContext.RequestContext.Configuration.DependencyResolver.GetService(typeof(IMapper));
             SetValue(actionContext, mapper.Map(deserialized, _type, Descriptor.ParameterType));
-        }
-    }
-
-    public class FromBodyMapAttribute : ParameterBindingAttribute
-    {
-        private Type _type;
-
-        public FromBodyMapAttribute(Type type)
-        {
-            _type = type;
-        }
-
-        public override HttpParameterBinding GetBinding(HttpParameterDescriptor parameter)
-        {
-            return new MapFromBodyParameterBinding(parameter, _type);
         }
     }
 }
