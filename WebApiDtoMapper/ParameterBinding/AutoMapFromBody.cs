@@ -6,8 +6,8 @@
     using System.Web.Http;
     using System.Web.Http.Controllers;
     using System.Web.Http.Metadata;
-    using AutoMapper;
     using Newtonsoft.Json;
+    using WebApiDtoMapper;
 
     public class MapFromBodyParameterBinding : HttpParameterBinding
     {
