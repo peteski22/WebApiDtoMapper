@@ -8,7 +8,6 @@
     using System.Web.Http.Metadata;
     using AutoMapper;
     using Newtonsoft.Json;
-    using WebApiDtoMapper.Models;
 
     public class MapFromBodyParameterBinding : HttpParameterBinding
     {
@@ -17,7 +16,6 @@
         public MapFromBodyParameterBinding(HttpParameterDescriptor parameter, Type type) : base(parameter)
         {
             _type = type;
-            Mapper.Initialize(x => x.CreateMap<HelloDto, Hello>());
         }
 
         public override bool WillReadBody
@@ -27,8 +25,9 @@
 
         public override async Task ExecuteBindingAsync(ModelMetadataProvider metadataProvider, HttpActionContext actionContext, CancellationToken cancellationToken)
         {
+            var mapper = (IMapper)actionContext.RequestContext.Configuration.DependencyResolver.GetService(typeof(IMapper));
             var content = await actionContext.Request.Content.ReadAsStringAsync();
-            SetValue(actionContext, Mapper.Map(JsonConvert.DeserializeObject(content, _type), _type, Descriptor.ParameterType));
+            SetValue(actionContext, mapper.Map(JsonConvert.DeserializeObject(content, _type), _type, Descriptor.ParameterType));
         }
     }
 
