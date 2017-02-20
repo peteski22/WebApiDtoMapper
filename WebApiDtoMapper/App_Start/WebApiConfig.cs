@@ -1,7 +1,6 @@
-﻿namespace WebApiDtoMapper
+﻿namespace WebApiDtoMapper.Sample.App_Start
 {
     using System.Web.Http;
-    using App_Start;
 
     public static class WebApiConfig
     {

@@ -6,7 +6,6 @@
     using System.Web.Http.Controllers;
     using System.Web.Http.Filters;
     using AutoMapper;
-    using WebApiDtoMapper.Models;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class MapResponseAttribute : ActionFilterAttribute
@@ -15,10 +14,10 @@
 
         static MapResponseAttribute()
         {
-            Mapper.Initialize(x => x.CreateMap<Hello, HelloDto>());
+            // TODO: Inject
         }
 
-        public MapResponseAttribute(Type destType)
+        public MapResponseAttribute(Type destType) : base()
         {
             _destType = destType;
         }
@@ -31,12 +30,14 @@
         public override void OnActionExecuted(HttpActionExecutedContext context)
         {
             var status = context.Response.StatusCode;
+
             if (status != HttpStatusCode.OK)
             {
                 return;
             }
 
             object content;
+
             if (!context.Response.TryGetContentValue(out content))
             {
                 context.Response = new HttpResponseMessage(HttpStatusCode.InternalServerError);

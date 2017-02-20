@@ -1,9 +1,9 @@
-﻿namespace WebApiDtoMapper.Controllers
+﻿namespace WebApiDtoMapper.Sample.Controllers
 {
-    using System.Web.Http;
+    using Filters;
     using ParameterBinding;
-    using WebApiDtoMapper.Filters;
-    using WebApiDtoMapper.Models;
+    using Models;
+    using System.Web.Http;
 
     public class HelloController : ApiController
     {

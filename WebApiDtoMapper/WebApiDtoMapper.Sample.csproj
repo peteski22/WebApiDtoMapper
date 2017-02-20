@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApiDtoMapper</RootNamespace>
-    <AssemblyName>WebApiDtoMapper</AssemblyName>
+    <RootNamespace>WebApiDtoMapper.Sample</RootNamespace>
+    <AssemblyName>WebApiDtoMapper.Sample</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -100,16 +100,11 @@
     <Compile Include="App_Start\ContainerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HelloController.cs" />
-    <Compile Include="Filters\AutoMapFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IMapper.cs" />
-    <Compile Include="Mapper.cs" />
     <Compile Include="Models\Hello.cs" />
     <Compile Include="Models\HelloDto.cs" />
-    <Compile Include="ParameterBinding\MapFromBodyAttribute.cs" />
-    <Compile Include="ParameterBinding\MapFromBodyParameterBinding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +118,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebApiDtoMapper.Sample\WebApiDtoMapper.csproj">
+      <Project>{037fc596-af6f-4013-8b04-d81c21ef17e4}</Project>
+      <Name>WebApiDtoMapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

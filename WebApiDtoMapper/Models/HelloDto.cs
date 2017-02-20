@@ -1,4 +1,4 @@
-﻿namespace WebApiDtoMapper.Models
+﻿namespace WebApiDtoMapper.Sample.Models
 {
     public class HelloDto
     {

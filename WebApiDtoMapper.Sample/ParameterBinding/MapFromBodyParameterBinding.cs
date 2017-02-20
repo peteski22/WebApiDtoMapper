@@ -1,4 +1,4 @@
-﻿namespace WebApi.ParameterBinding
+﻿namespace WebApiDtoMapper.ParameterBinding
 {
     using System;
     using System.IO;
