@@ -1,6 +1,7 @@
 ﻿namespace WebApi.ParameterBinding
 {
     using System;
+    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Web.Http;
@@ -25,9 +26,11 @@
 
         public override async Task ExecuteBindingAsync(ModelMetadataProvider metadataProvider, HttpActionContext actionContext, CancellationToken cancellationToken)
         {
+            var content = await actionContext.Request.Content.ReadAsStreamAsync();
+            var reader = new JsonTextReader(new StreamReader(content));
+            var deserialized = actionContext.ActionDescriptor.Configuration.Formatters.JsonFormatter.CreateJsonSerializer().Deserialize(reader, _type);
             var mapper = (IMapper)actionContext.RequestContext.Configuration.DependencyResolver.GetService(typeof(IMapper));
-            var content = await actionContext.Request.Content.ReadAsStringAsync();
-            SetValue(actionContext, mapper.Map(JsonConvert.DeserializeObject(content, _type), _type, Descriptor.ParameterType));
+            SetValue(actionContext, mapper.Map(deserialized, _type, Descriptor.ParameterType));
         }
     }
 
