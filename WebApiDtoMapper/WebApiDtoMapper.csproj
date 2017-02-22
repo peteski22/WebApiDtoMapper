@@ -62,7 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Filters\AutoMapFilterAttribute.cs" />
+    <Compile Include="Filters\MapResponseToAttribute.cs" />
     <Compile Include="IMapper.cs" />
     <Compile Include="Mapper.cs" />
     <Compile Include="ParameterBinding\MapFromBodyAttribute.cs" />
