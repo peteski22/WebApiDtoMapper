@@ -7,24 +7,14 @@
     using System.Web.Http.Filters;
     using AutoMapper;
 
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public class MapResponseAttribute : ActionFilterAttribute
+    //[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+    public class MapResponseToAttribute : ActionFilterAttribute
     {
-        private readonly Type _destType;
+        private Type _type;
 
-        static MapResponseAttribute()
+        public MapResponseToAttribute(Type type)
         {
-            // TODO: Inject
-        }
-
-        public MapResponseAttribute(Type destType) : base()
-        {
-            _destType = destType;
-        }
-
-        public override void OnActionExecuting(HttpActionContext actionContext)
-        {
-            base.OnActionExecuting(actionContext);
+            _type = type;
         }
 
         public override void OnActionExecuted(HttpActionExecutedContext context)
@@ -41,10 +31,10 @@
             if (!context.Response.TryGetContentValue(out content))
             {
                 context.Response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
-                return;
             }
 
-            var result = Mapper.Map(content, content.GetType(), _destType);
+            var mapper = (IMapper)context.ActionContext.RequestContext.Configuration.DependencyResolver.GetService(typeof(IMapper));
+            var result = mapper.Map(content, content.GetType(), _type);
             context.Response = context.Request.CreateResponse(status, result);
         }
     }

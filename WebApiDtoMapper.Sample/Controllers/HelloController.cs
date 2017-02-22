@@ -8,7 +8,7 @@
     public class HelloController : ApiController
     {
         [HttpGet]
-        [MapResponse(typeof(HelloDto))]
+        [MapResponseTo(typeof(HelloDto))]
         public IHttpActionResult GetHello()
         {
             return Ok(new Hello { Greeting = "Yo" });
