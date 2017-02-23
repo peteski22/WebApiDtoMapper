@@ -18,6 +18,7 @@
             );
 
             ContainerConfig.RegisterContainer(config);
+            MapperConfig.Configure();
         }
     }
 }
